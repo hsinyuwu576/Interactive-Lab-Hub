@@ -216,6 +216,12 @@ After that, Git will ask you to login to your GitHub account to push the updates
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
+Alan:
+(1) We can change the color of the clock.
+(2) The moving seems lagging.
+
+Peter:
+(1) We can reset the clock to the middle of the screen.
 
 # Prep for Part 2
 
