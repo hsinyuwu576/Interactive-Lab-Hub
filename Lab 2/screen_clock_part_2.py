@@ -94,13 +94,13 @@ def UpdateAcc():
         draw.rectangle((0, 0, width, 0), outline = "#FFFFFF")
         draw.rectangle((0, 0, 0, height), outline = "#FFFFFF")
     elif not buttonA.value:
-        tmpx += 8
-        tmpy += 8
+        tmpx += 2
+        tmpy += 2
         draw.rectangle((0, height - 1, width, height - 1), outline = "#EA0000")
         draw.rectangle((width - 1, 0, width - 1, height), outline = "#EA0000")
     elif not buttonB.value:
-        tmpx -= 8
-        tmpy -= 8
+        tmpx -= 2
+        tmpy -= 2
         draw.rectangle((0, 0, width, 0), outline = "#009100")
         draw.rectangle((0, 0, 0, height), outline = "#009100")
 
