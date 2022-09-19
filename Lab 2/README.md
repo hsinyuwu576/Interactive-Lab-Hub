@@ -217,11 +217,14 @@ After that, Git will ask you to login to your GitHub account to push the updates
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
 Alan:
+
 (1) We can change the color of the clock.
+
 (2) The moving seems lagging.
 
 Peter:
-(1) We can reset the clock to the middle of the screen.
+
+I like your idea of moving the clock with gravity, so the clock can move to left-up corner or right-down corner with smoother speed. I think you can add more features like pressing two buttons to make the clocking moving different way or adding some colors.
 
 # Prep for Part 2
 
