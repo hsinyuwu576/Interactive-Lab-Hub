@@ -73,19 +73,32 @@ vx = 0
 vy = 0
 ax = 0
 ay = 0
-
+color_id = 0
+colors = ["#FFFFFF", "#EA0000", "#D9006C", "#AE00AE", "#6F00D2", "#0000C6", "#00AEAE", "#00BB00"]
 
 def UpdateAcc():
-    global ax, ay
+    global x, y, vx, vy, ax, ay, color_id
 
     tmpx = 0
     tmpy = 0
-    if not buttonA.value:
+    if not buttonA.value and not buttonB.value:
+        x = 60
+        y = 40
+        vx = 0
+        vy = 0
+        ax = 0
+        ay = 0
+        color_id = 0
+        draw.rectangle((0, height - 1, width, height - 1), outline = "#FFFFFF")
+        draw.rectangle((width - 1, 0, width - 1, height), outline = "#FFFFFF")
+        draw.rectangle((0, 0, width, 0), outline = "#FFFFFF")
+        draw.rectangle((0, 0, 0, height), outline = "#FFFFFF")
+    elif not buttonA.value:
         tmpx += 8
         tmpy += 8
         draw.rectangle((0, height - 1, width, height - 1), outline = "#EA0000")
         draw.rectangle((width - 1, 0, width - 1, height), outline = "#EA0000")
-    if not buttonB.value:
+    elif not buttonB.value:
         tmpx -= 8
         tmpy -= 8
         draw.rectangle((0, 0, width, 0), outline = "#009100")
@@ -96,7 +109,7 @@ def UpdateAcc():
 
 
 def UpdateLoc():
-    global x, y, vx, vy
+    global x, y, vx, vy, color_id
     vx += ax
     vy += ay
     x += vx
@@ -105,22 +118,26 @@ def UpdateLoc():
     if x + rect_w + 1 > width:
         vx *= -0.8
         x = width - rect_w - 1
+        color_id = (color_id + 1) % len(colors)
     elif x < 0:
         vx *= -0.8
         x = 0
+        color_id = (color_id + 1) % len(colors)
 
     if y + rect_h + 1 > height:
         vy *= -0.8
         y = height - rect_h - 1
+        color_id = (color_id + 1) % len(colors)
     elif y < 0:
         vy *= -0.8
         y = 0
+        color_id = (color_id + 1) % len(colors)
 
 
 def DrawClock():
-    draw.rectangle((x, y, x + rect_w, y + rect_h), outline = "#FFFFFF", fill = 0)
-    draw.text((x + 3, y + 4), time.strftime("%m/%d/%Y"), font = font, fill = "#FFFFFF")
-    draw.text((x + 3, y + 19), time.strftime("%H:%M:%S"), font = font, fill = "#FFFFFF")
+    draw.rectangle((x, y, x + rect_w, y + rect_h), outline = colors[color_id], fill = 0)
+    draw.text((x + 3, y + 4), time.strftime("%m/%d/%Y"), font = font, fill = colors[color_id])
+    draw.text((x + 3, y + 19), time.strftime("%H:%M:%S"), font = font, fill = colors[color_id])
 
 while True:
     # Draw a black filled box to clear the image.
