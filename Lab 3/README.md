@@ -58,6 +58,8 @@ You can also play audio files directly with `aplay filename`. Try typing `aplay 
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
 (This shell file should be saved to your own repo for this lab.)
 
+[**greet_me.sh**](https://github.com/hsinyuwu576/Interactive-Lab-Hub/blob/Fall2022/Lab%203/greet_me.sh)
+
 Bonus: If this topic is very exciting to you, you can try out this new TTS system we recently learned about: https://github.com/rhasspy/larynx
 
 ### Speech to Text
@@ -80,6 +82,10 @@ Now, look at which camera you have. Do you have the cylinder camera (likely the 
 Then try `./vosk_demo_mic.sh`
 
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
+
+[**ask_zip_code.sh**](https://github.com/hsinyuwu576/Interactive-Lab-Hub/blob/Fall2022/Lab%203/ask_zip_code%2Csh)
+
+[**ask_zip_code.py**](https://github.com/hsinyuwu576/Interactive-Lab-Hub/blob/Fall2022/Lab%203/ask_zip_code%2Cpy)
 
 ### Serving Pages
 
@@ -104,6 +110,10 @@ From a remote browser on the same network, check to make sure your webserver is 
 Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
 
 \*\***Post your storyboard and diagram here.**\*\*
+
+[**storyboard 1**](https://drive.google.com/file/d/1Diu9WsYSal70g7XKEnVcV2ezFsku4fUp/view?usp=sharing)
+
+[**storyboard 1**](https://drive.google.com/file/d/1Dbvu4dIiNcfAMqlrybzwyR4fhkIseU4S/view?usp=sharing)
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
