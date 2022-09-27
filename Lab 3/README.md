@@ -119,11 +119,17 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 
 \*\***Please describe and document your process.**\*\*
 
+[**document**](https://drive.google.com/file/d/1DtC_qFzJ9Iu1TN7JEtzBUqD5f1HtC1c8/view?usp=sharing)
+
 ### Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
 
+[**Video**](https://drive.google.com/file/d/1v04cyh7-__usiC7C-TfOs-PX0kfq3X7T/view?usp=sharing)
+
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+
+Both dialogues were similar. However, the act-out dialogue seems to be more interesting and flexible than what I planned.
 
 ### Wizarding with the Pi (optional)
 In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
