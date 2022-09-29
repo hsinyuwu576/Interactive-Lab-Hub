@@ -142,9 +142,23 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 
 ## Prep for Part 2
 
+**Heather's feedback:**
+**Henry’s storyboard is really clear and can link back to last lab’s interaction of the clock. This is really like Alexa and it seems like more helpful as it works like a task management tool. The act-out dialogue seems better and I’m looking forward to see more improvements in part2! Keep up with the good work.**
+
+
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
+
+**I think that the device needs to be able to understand what users say. The users would communicate to device with different tone and wide vocabularies. Therefore, the device needs to understand all of this and the semantic meaning, so we may train NLP model and inference it on the device. Honestly, it is hard to implement and beyond the scope. Hence, in the prototyping step, I will simplify the whole process and just provide the particular input to the device.**
+
 2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
+
+**Besides speech, we can use gesture to interact with users. For example, if users want to sleep more time, uses can wave hand to the device.**
+
 3. Make a new storyboard, diagram and/or script based on these reflections.
+
+[**Storyboard 1**](https://drive.google.com/file/d/1EKf88tOkcvRRifnHjqnMMozYZOx7ZIQ9/view?usp=sharing)
+
+[**Storyboard 2**](https://drive.google.com/file/d/1EQE98f7cP6oQLnIafxsegV-u2fKJlPj0/view?usp=sharing)
 
 ## Prototype your system
 
@@ -155,7 +169,11 @@ The system should:
 
 *Document how the system works*
 
+[**Control flow**](https://drive.google.com/file/d/1EER3uUGVtVPlCaQ3CNlnv_IQFX5CjFUk/view?usp=sharing)
+
 *Include videos or screencaptures of both the system and the controller.*
+
+[**System & controller**](https://drive.google.com/file/d/1EGZUXHMlS4e9UHcHBRPX4JXHRa-LmiIY/view?usp=sharing)
 
 ## Test the system
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
@@ -163,18 +181,18 @@ Try to get at least two people to interact with your system. (Ideally, you would
 Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+
+The system follows the control flow correctly. And it can perform all tasks (set clock, set reminder, wake up users, remind users) smoothly. However, the system is restricted both on input and output side. For the input side, the system is limited by the accuracy of speech to text technology. For the output side, the system just can response with limited vocabulary and robotic tone.
 
 ### What worked well about the controller and what didn't?
 
-\*\**your answer here*\*\*
+The controller can recognize hand waving precisely and can wake user up on time. However, the controller has trouble to recognize what user saying. Especially for the reminder part, the controller cannot recognize what users are saying precisely.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
-\*\**your answer here*\*\*
+For the system with speech interactions, there is a high technical requirement to design a system that is capable to fully understand users’ meaning and respond with appropriate sentence.
 
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
-\*\**your answer here*\*\*
-
+The interaction can be created through speech, gesture, body position and screen etc. Moreover, for wearable device, we can capture the users’ biology data and use vibration to interaction with users.
