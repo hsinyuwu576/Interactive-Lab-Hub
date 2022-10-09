@@ -182,6 +182,8 @@ Usually, sensors need to positioned in specific locations or orientations to mak
 
 **\*\*\*Pick one of these designs to prototype.\*\*\***
 
+[**Sketch**](https://drive.google.com/file/d/1FuNS-CE2uXq0zXuJMXkh1bmgQHzJIzTg/view?usp=sharing)
+
 
 ### Part D
 ### Physical considerations for displaying information and housing parts
@@ -232,6 +234,8 @@ Think about how you want to present the information about what your sensor is se
 Build a cardbord prototype of your design.
 
 **\*\*\*Document your rough prototype.\*\*\***
+
+[**Design**](https://drive.google.com/file/d/1FwkG_qQ1I86B5gANk1eO4sdq6BN4P_tx/view?usp=sharing)
 
 
 LAB PART 2
