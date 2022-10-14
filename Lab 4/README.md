@@ -289,10 +289,11 @@ Fruit Picker I
 * Look like:
 Small, simple, easy to carry
 
-[**Phote**](https://drive.google.com/file/d/1RZ17XHHXIfBBhi3wCR0dtRIemb1iaecN/view?usp=sharing)
+[Photo](https://drive.google.com/file/d/1RZ17XHHXIfBBhi3wCR0dtRIemb1iaecN/view?usp=sharing)
 
 * Work like:
-Fruit Picker is a device that help you pick fruit in a market. It can check the color of the fruit and show maturity information to user via a screen. Moreover, if fruit is ripe or bitten by bugs, it will warn user to avoid this fruit.
+1. Fruit Picker is a device that help you pick fruit in a market. It can check the color of the fruit and show maturity information to user via a screen. Moreover, if fruit is ripe or bitten by bugs, it will warn user to avoid this fruit.
+2. The target users of Fruit Picker are young people who like to eat fruit but lack experience of picking fruit at market.
 
 * Act like:
 
@@ -317,10 +318,11 @@ Fruit Picker II
 * Look like:
 Small, simple, easy to carry, user-friendly, connect to internet
 
-[Phote](https://drive.google.com/file/d/1HN272oMTQs6Coj9T7o4APick4qlf39lG/view?usp=sharing)
+[Photo](https://drive.google.com/file/d/1HN272oMTQs6Coj9T7o4APick4qlf39lG/view?usp=sharing)
 
 * Work like:
-Detect the fruit quality by a sensor connected to raspberry pi. Show result to users via website so that user can check fruit status via mobile phone.
+1. Detect the fruit quality by a sensor connected to raspberry pi.
+2. Upload results to a website so that user can check fruit status via mobile phone.
 
 * Act like:
 
