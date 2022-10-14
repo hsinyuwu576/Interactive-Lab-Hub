@@ -281,3 +281,50 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
 
+--------------------------------iteration 1------------------------------------
+
+* Idea:
+Fruit Picker I
+
+* Look like:
+Small, simple, easy to carry
+
+[**Phote**](https://drive.google.com/file/d/1RZ17XHHXIfBBhi3wCR0dtRIemb1iaecN/view?usp=sharing)
+
+* Work like:
+Fruit Picker is a device that help you pick fruit in a market. It can check the color of the fruit and show maturity information to user via a screen. Moreover, if fruit is ripe or bitten by bugs, it will warn user to avoid this fruit.
+
+* Act like:
+
+[Video 1](https://drive.google.com/file/d/1Lal4TXey99BSZ8Noqxby-10Yl6wjWczD/view?usp=sharing)
+
+[Vedeo 2](https://drive.google.com/file/d/1jUPpH7WhLhbcIkxzNM518KsvYRJNqWaR/view?usp=sharing)
+
+* Feedback from Alan & Heather:
+
+1. Users don’t know that they need to aim the sensor to the target to get correct results.
+2. The screen (Adafruit MiniPiTFT) is too small to show information to users.
+
+* Reflect:
+1.	Redesign the device so that users are notified that they need to aim the sensor to the target to get correct results.
+2.	Instead of using Adafruit MiniPiTFT to show information, connect the device to the internet and put information on website. Therefore, users can access information via smartphones or laptops.
+
+--------------------------------iteration 2------------------------------------
+
+* Idea:
+Fruit Picker II
+
+* Look like:
+Small, simple, easy to carry, user-friendly, connect to internet
+
+[Phote](https://drive.google.com/file/d/1HN272oMTQs6Coj9T7o4APick4qlf39lG/view?usp=sharing)
+
+* Work like:
+Detect the fruit quality by a sensor connected to raspberry pi. Show result to users via website so that user can check fruit status via mobile phone.
+
+* Act like:
+
+[Video1](https://drive.google.com/file/d/1H_njsNyaaySeAjq0pzwMUssAiLFA0hUN/view?usp=sharing)
+
+[Video2](https://drive.google.com/file/d/1HKQ7neepsvlxOc-gvFXY5HArJ0yTKP0P/view?usp=sharing)
+
