@@ -102,6 +102,30 @@ pi@ixe00:~/openCV-examples/object-detection $ python detect.py
 
 **\*\*\*Try each of the following four examples in the `openCV-examples`, include screenshots of your use and write about one design for each example that might work based on the individual benefits to each algorithm.\*\*\***
 
+**contours-detection**
+
+[screenshot](https://drive.google.com/file/d/1Wm-UL7ODlREPLpv4ghzquSHKC2-9gvt4/view?usp=sharing)
+
+Usage: remove the background in the video meeting.
+
+**face-detection**
+
+[screenshot](https://drive.google.com/file/d/10gtpBfdwnZ_RLlTn39xr_r7nnSNtCNay/view?usp=sharing)
+
+Usage: check if everyone wears a mask.
+
+**flow-detection**
+
+[screenshot](https://drive.google.com/file/d/1m-bVMMzR5ggEdZMpPkwlmSJT5Sker0E3/view?usp=sharing)
+
+Usage: Auto-focus the moving objects on a mobile phone camera. 
+
+**object-detection**
+
+[screenshot](https://drive.google.com/file/d/136cRozuV_TWlgU79wa5gVw99j-Ila6D6/view?usp=sharing)
+
+Usage: Auto-pilot car.
+
 #### Filtering, FFTs, and Time Series data. 
 Additional filtering and analysis can be done on the sensors that were provided in the kit. For example, running a Fast Fourier Transform over the IMU or Microphone data stream could create a simple activity classifier between walking, running, and standing.
 
@@ -139,6 +163,8 @@ For technical references:
 
 
 **\*\*\*Include links to your code here, and put the code for these in your repo--they will come in handy later.\*\*\***
+
+[Volume threshold detection](volume_threshold_detection.py)
 
 ### (Optional Reading) Introducing Additional Concepts
 The following sections ([MediaPipe](#mediapipe) and [Teachable Machines](#teachable-machines)) are included for your own optional learning. **The associated scripts will not work on Fall 2022's Pi Image, so you can move onto part B.** However, you are welcome to try it on your personal computer. If this functionality is desirable for your lab or final project, we can help you get a different image running the last OS and version of python to make the following code work.
