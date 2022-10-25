@@ -366,7 +366,7 @@ Here is a screenshot of our design while detecting a perosn walk into the room, 
 )
 
 Here is a demo video of our design:
-[![IMAGE ALT TEXT HERE](https://github.com/Peggypei98/Interactive-Lab-Hub/blob/4dd94654fe14119f4f7c845c24625944c878184b/Lab%205/p7.png)](https://youtu.be/lS9Zr6WNqlw)
+[Video](https://youtu.be/lS9Zr6WNqlw)
 
 
 ### Part 2.
