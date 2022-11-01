@@ -374,3 +374,34 @@ Here is a demo video of our design:
 Following exploration and reflection from Part 1, finish building your interactive system, and demonstrate it in use with a video.
 
 **\*\*\*Include a short video demonstrating the finished result.\*\*\***
+
+We saw bad news, the Itaewon Halloween Disaster, on the CNN website. And we would like to apply our design in preventing this disaster happen again. 
+
+Link to the news we saw: https://www.cnn.com/2022/10/30/asia/seoul-itaewon-halloween-crush-explainer-intl-hnk
+
+This week, we would like to reflect on and improve our previous design:
+
+Reflection:
+
+(1) We want people to know the current level of the population intuitively. A single number cannot let people understand the current risk level directly.
+
+(2) The screen may not be sufficient to get people's attention. Hence, we want to add the audio feature to our system to get more attention when needed.
+
+(3) New York is an international city. People in New York are from various regions. Hence, we want our system accessible to people speaking different languages.
+
+Improvement:
+
+(1)   Level our warning system
+
+We would like to use different colors to differentiate population control stages in space. 
+
+- Green: Normal 
+- Orange: Close to the limited population number
+- Red: Reach the limited population number
+
+
+(2) Add the speech warning feature to our design
+
+
+Here is an improved demo video of our design:
+[![IMAGE ALT TEXT HERE](https://github.com/Peggypei98/Interactive-Lab-Hub/blob/8a545aed60dfc3b7c7f58afbd06442cab2ecac35/Lab%205/p8.png)](https://youtu.be/mgWyO6RLQ3o)
