@@ -1,6 +1,14 @@
 # Little Interactions Everywhere
 
-**NAMES OF COLLABORATORS HERE**
+Alan Hsieh (amh425) - Developed scripting code to MQTT device integration.
+
+Tsung-Yin Hsieh (th542) - Ideated design for visualizer interface and co-developed sketches for protyping and interaction.
+
+Yi-Ru Pei (yp329) - Co-developed sketches for prototyping and interaction, developed user need and hospital experience for product ideation.
+
+Jonathan Tan (jmt362) - Using Django writing visualizer for web browser interface.
+
+Henry Wu (hw574) - Data management using PostgreSQL to manage MQTT data storage.  Co-developed scripting code for MQTT.
 
 ## Prep
 
@@ -96,6 +104,22 @@ Once connected, you should be able to see all the messages under the IDD topic. 
 
 **\*\*\*Consider how you might use this messaging system on interactive devices, and draw/write down 5 ideas here.\*\*\***
 
+1. We design a covid 19 application to detect whether people have been exposed to covid infected people and use IoT to prevent cluster infection
+![p1](imgs/L6p1.jpg)
+
+2. Use IoT sensors to measure water humidity to know if plants need to be watered
+![p2](imgs/L6p2.jpg)
+
+3. We use captive sensors to detect and inform patients which Department they are going to work in.
+![p3](imgs/L6p3.jpg)
+
+4. We design the Traffic flow sensor by using the MQTT explorer to detect the traffic jam situation. To, adjust the traffic light to control the traffic flow in a specific line.
+![p4](imgs/L6p4.jpg)
+
+5. We use sensors to automatically detect the brightness of the room and automatically adjust the brightness of the room at different times of the day
+![p5](imgs/L6p5.jpg)
+
+
 ### Part C
 ### Streaming a Sensor
 
@@ -116,8 +140,13 @@ Plug in the capacitive sensor board with the Qwiic connector. Use the alligator 
  ```
 
 **\*\*\*Include a picture of your setup here: what did you see on MQTT Explorer?\*\*\***
+![1245080](https://user-images.githubusercontent.com/6706384/200462129-152636c4-7bf5-46d1-aaea-06b5139f3600.jpg)
+![twizzer](https://user-images.githubusercontent.com/6706384/200461716-617e8664-2cb5-4d3a-9f4f-04a91c26f39d.png)
 
 **\*\*\*Pick another part in your kit and try to implement the data streaming with it.\*\*\***
+![proximity](https://user-images.githubusercontent.com/6706384/200461792-ee87f2b6-9f81-4076-a92e-39fa0089a080.png)
+
+[code](proximity_sender.py)
 
 
 ### Part D
@@ -150,20 +179,37 @@ You may ask "but what if I missed class?" Am I not admitted into the collective 
 Of course not! You can go to [https://one-true-colornet.glitch.me/](https://one-true-colornet.glitch.me/) and become one with the ColorNet on the inter-webs. Glitch is a great tool for prototyping sites, interfaces and web-apps that's worth taking some time to get familiar with if you have a chance. Its not super pertinent for the class but good to know either way. 
 
 **\*\*\*Can you set up the script that can read the color anyone else publish and display it on your screen?\*\*\***
-
+![S__241213447](https://user-images.githubusercontent.com/6706384/200462170-74e16be0-b911-45d2-bb75-6f20fbcb7bc9.jpg)
+![S__241213445](https://user-images.githubusercontent.com/6706384/200462201-d80f4058-8d54-4f48-a38b-4068c0fe950b.jpg)
+https://user-images.githubusercontent.com/6706384/200462211-671ca72f-6d7d-4ffa-84a3-3dba976c1b9a.mp4
 
 ### Part E
+
+
 ### Make it your own
 
 Find at least one class (more are okay) partner, and design a distributed application together based on the exercise we asked you to do in this lab.
 
-**\*\*\*1. Explain your design\*\*\*** For example, if you made a remote controlled banana piano, explain why anyone would want such a thing.
+***1. Explain your design*** For example, if you made a remote controlled banana piano, explain why anyone would want such a thing.
 
-**\*\*\*2. Diagram the architecture of the system.\*\*\*** Be clear to document where input, output and computation occur, and label all parts and connections. For example, where is the banana, who is the banana player, where does the sound get played, and who is listening to the banana music?
+In this lab, we developed an MQTT status updator that can interface with multiple existing hospital devices. These devices, send messages across the hospital network, indicating their current status. For example, when the hematology analyzer in the blood department is complete with one task, it can update across the network indicating it is ready. In these examples, we can expidite hospital patient management processes, by providing instantanious situational awareness for multiple departments. Members of our group with hospital backgrounds indicated this manual communication via phone, beepers, etc as a particular painpoint for hospital staff.
 
-**\*\*\*3. Build a working prototype of the system.\*\*\*** Do think about the user interface: if someone encountered these bananas somewhere in the wild, would they know how to interact with them? Should they know what to expect?
+***2. Diagram the architecture of the system.*** Be clear to document where input, output and computation occur, and label all parts and connections. For example, where is the banana, who is the banana player, where does the sound get played, and who is listening to the banana music?
 
-**\*\*\*4. Document the working prototype in use.\*\*\*** It may be helpful to record a Zoom session where you should the input in one location clearly causing response in another location.
+![36244192-A099-4CE7-A09D-2BD7B1B5090F](https://user-images.githubusercontent.com/6706384/200461451-7cde8891-7f8a-433d-9a55-30771ef6f86f.jpg)
 
-<!--**\*\*\*5. BONUS (Wendy didn't approve this so you should probably ignore it)\*\*\*** get the whole class to run your code and make your distributed system BIGGER.-->
+***3. Build a working prototype of the system.*** Do think about the user interface: if someone encountered these bananas somewhere in the wild, would they know how to interact with them? Should they know what to expect?
 
+See video below for prototype in action. As far as the user interface goes, we are still developing a centralized visual indicator for equipment and status updates. This is quite diffcult to implement as we are unsure of the complex workings of hospital requirements. However, we do understand the need for a dasboard and customization options which can put hospital members in quick communication with one another.
+
+Currently the interface being demonstrated shows the raw interface with the MQTT explorer as a working prototype.
+
+<img width="1123" alt="Screen Shot 2022-11-07 at 9 37 13 PM" src="https://user-images.githubusercontent.com/6706384/200461425-a2e1e302-3183-4208-9b62-213fdda56eb6.png">
+
+In this proposed dashboard we are utilizing Django, and PostgreSQL to manage the MQTT message database and deliver a web format dashboard.
+
+In the above illustration, we show the status using red/green nogo/go indication, with queue represented by the blue squares below.  We also show that this is a personalized chart for the equipment Dr. Wang is most interested in viewing, and that she may logout and switch users if she chooses.
+
+***4. Document the working prototype in use.*** It may be helpful to record a Zoom session where you should the input in one location clearly causing response in another location.
+
+https://youtu.be/c4wwQdWHIvI
