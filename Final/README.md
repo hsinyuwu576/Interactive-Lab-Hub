@@ -33,7 +33,8 @@ We are building a Party Christmas Tree which is a must for us to have a party. T
 
 ### Risks/Contingencies
 
-
+- The tree may not recognize dance accurately because it is hard to separate dance and other actions by the machine learning approach.
+- Given that the tree is tall and heavy, it is hard to make the tree vibrate. We may need a powerful motor or vibration device for our project.
 
 ### Fall-back Plan
 
