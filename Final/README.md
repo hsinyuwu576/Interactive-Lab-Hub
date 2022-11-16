@@ -40,7 +40,7 @@ We are building a Party Christmas Tree which is a must for us to have a party. T
 
 Here is what we are going to present in the class:
 
-![This is an image](https://github.com/alan7622/Interactive-Lab-Hub/blob/e6002613ed80f8b001f779dea67901e69efa9a08/Final/pic1.png)
+![This is an image](pic1.png)
 
 
 
