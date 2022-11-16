@@ -37,7 +37,8 @@ We are building a Party Christmas Tree which is a must for us to have a party. T
 - Given that the tree is tall and heavy, it is hard to make the tree vibrate. We may need a powerful motor or vibration device for our project.
 
 ### Fall-back Plan
-- The tree may not recognize dance accurately, so we might make easier detection. The tree may interact with a person when it detects a person stand in front of it. --- If the vibration of tree doesn't work, we may use light effects (changing or blinking colors) to interact with people instead of using vibration.
+- The tree may not recognize dance accurately, so we might make easier detection. The tree may interact with a person when it detects a person stand in front of it.
+- If the vibration of tree doesn't work, we may use light effects (changing or blinking colors) to interact with people instead of using vibration.
 
 Here is what we are going to present in the class:
 
