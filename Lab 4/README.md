@@ -3,7 +3,7 @@
 **NAMES OF COLLABORATORS HERE**
 
 
-For lab this week, we focus on both on sensing, to bring in new modes of input into your devices, as well as prototyping the physical look and feel of the device. You will think about the physical form the device needs to perform the sensing as well as present the display or feedback about what was sensed. 
+For lab this week, we focus both on sensing, to bring in new modes of input into your devices, as well as prototyping the physical look and feel of the device. You will think about the physical form the device needs to perform the sensing as well as present the display or feedback about what was sensed. 
 
 ## Part 1 Lab Preparation
 
@@ -14,7 +14,7 @@ As always, pull updates from the class Interactive-Lab-Hub to both your Pi and y
 
 ```
 pi@ixe00:~$ cd Interactive-Lab-Hub
-pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2021
+pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2022
 pi@ixe00:~/Interactive-Lab-Hub $ git add .
 pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab4 content"
 pi@ixe00:~/Interactive-Lab-Hub $ git push
@@ -153,9 +153,7 @@ Connect it to your pi with Qwiic connector and try running the example script to
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Joystick_Py) to learn more about the sensor!
 
-#### (Optional) Distance Sensor
-
-Note: We did not distribute this sensor to you, so if you are interested in playing with it, please come pick it up from the TA!
+#### Distance Sensor
 
 Earlier we have asked you to play with the proximity sensor, which is able to sense object within a short distance. Here, we offer [Qwiic Multi Distance Sensor](https://www.sparkfun.com/products/17072), which has a field of view of about 25° and is able to detect objects up to 3 meters away! 
 
@@ -181,6 +179,8 @@ Usually, sensors need to positioned in specific locations or orientations to mak
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
 
 **\*\*\*Pick one of these designs to prototype.\*\*\***
+
+[**Sketch**](https://drive.google.com/file/d/1FuNS-CE2uXq0zXuJMXkh1bmgQHzJIzTg/view?usp=sharing)
 
 
 ### Part D
@@ -233,6 +233,8 @@ Build a cardbord prototype of your design.
 
 **\*\*\*Document your rough prototype.\*\*\***
 
+[**Design**](https://drive.google.com/file/d/1FwkG_qQ1I86B5gANk1eO4sdq6BN4P_tx/view?usp=sharing)
+
 
 LAB PART 2
 
@@ -243,7 +245,7 @@ Following exploration and reflection from Part 1, complete the "looks like," "wo
 ### Part E (Optional)
 ### Servo Control with Joystick
 
-In the class kit, you should be able to find the [Qwiic Servo Controller](https://www.sparkfun.com/products/16773) and [Micro Servo Motor SG51](https://www.adafruit.com/product/2201). The Qwiic Servo Controller will need external power supply to drive, which we will be distributing the battery packs in the class. Connect the servo controller to the miniPiTFT through qwiic connector and connect the external battery to the 2-Pin JST port (ower port) on the servo controller. Connect your servo to channel 2 on the controller, make sure the brown is connected to GND and orange is connected to PWM.
+In the class kit, you should be able to find the [Qwiic Servo Controller](https://www.sparkfun.com/products/16773) and [Micro Servo Motor SG51](https://www.adafruit.com/product/2201). The Qwiic Servo Controller will need external power supply to drive, which are included in your kit. Connect the servo controller to the miniPiTFT through qwiic connector and connect the external battery to the 2-Pin JST port (ower port) on the servo controller. Connect your servo to channel 2 on the controller, make sure the brown is connected to GND and orange is connected to PWM.
 
 <img src="Servo_Setup.jpg" width="400"/>
 
@@ -276,4 +278,57 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
+
+--------------------------------iteration 1------------------------------------
+
+* Idea:
+Fruit Picker I
+
+* Look like:
+Small, simple, easy to carry
+
+[Photo](https://drive.google.com/file/d/1RZ17XHHXIfBBhi3wCR0dtRIemb1iaecN/view?usp=sharing)
+
+* Work like:
+1. Fruit Picker is a device that help you pick fruit in a market. It can check the color of the fruit and show maturity information to user via a screen. Moreover, if fruit is ripe or bitten by bugs, it will warn user to avoid this fruit.
+2. The target users of Fruit Picker are young people who like to eat fruit but lack experience of picking fruit at market.
+
+[Storyboard](https://drive.google.com/file/d/1HqkFEPUVSppDYgA-IO8RN_1D2Fn0ZWSk/view?usp=sharing)
+
+* Act like:
+
+[Video 1](https://drive.google.com/file/d/1Lal4TXey99BSZ8Noqxby-10Yl6wjWczD/view?usp=sharing)
+
+[Vedeo 2](https://drive.google.com/file/d/1jUPpH7WhLhbcIkxzNM518KsvYRJNqWaR/view?usp=sharing)
+
+* Feedback from Alan & Heather:
+
+1. Users don’t know that they need to aim the sensor to the target to get correct results.
+2. The screen (Adafruit MiniPiTFT) is too small to show information to users.
+
+* Reflect:
+1.	Redesign the device so that users are notified that they need to aim the sensor to the target to get correct results.
+2.	Instead of using Adafruit MiniPiTFT to show information, connect the device to the internet and put information on website. Therefore, users can access information via smartphones or laptops.
+
+--------------------------------iteration 2------------------------------------
+
+* Idea:
+Fruit Picker II
+
+* Look like:
+Small, simple, easy to carry, user-friendly, connect to internet
+
+[Photo](https://drive.google.com/file/d/1HN272oMTQs6Coj9T7o4APick4qlf39lG/view?usp=sharing)
+
+* Work like:
+1. Detect the fruit quality by a sensor connected to raspberry pi.
+2. Upload results to a website so that user can check fruit status via mobile phone.
+
+[Storyboard](https://drive.google.com/file/d/1HpGk5lrt_qo36oN7HYuNbcl3LV6mzX4p/view?usp=sharing)
+
+* Act like:
+
+[Video1](https://drive.google.com/file/d/1H_njsNyaaySeAjq0pzwMUssAiLFA0hUN/view?usp=sharing)
+
+[Video2](https://drive.google.com/file/d/1HKQ7neepsvlxOc-gvFXY5HArJ0yTKP0P/view?usp=sharing)
 
