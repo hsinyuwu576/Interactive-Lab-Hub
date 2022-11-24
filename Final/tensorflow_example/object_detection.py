@@ -3,7 +3,7 @@ from PIL import Image
 import numpy as np
 import time
 
-data_folder = "~/Interactive-Lab-Hub/Final/tensorflow_example"
+data_folder = "~/Interactive-Lab-Hub/Final/tensorflow_example/"
 
 model_path = data_folder + "mobilenet_v1_1.0_224_quant.tflite"
 label_path = data_folder + "labels_mobilenet_quant_v1_224.txt"
