@@ -2,6 +2,8 @@ from tflite_runtime.interpreter import Interpreter
 from PIL import Image
 import numpy as np
 import time
+import cv2
+import sys
 
 # Dictionary that maps from joint names to keypoint indices.
 KEYPOINT_DICT = {
@@ -116,11 +118,19 @@ def classify_image(interpreter, image, height, width):
   (keypoint_locs, keypoint_edges, edge_colors) = _keypoints_and_edges_for_display(output, height, width)
   print(keypoint_locs)
 
+img = None
+webCam = False
+try:
+    print("Trying to open the Webcam.")
+    cap = cv2.VideoCapture(0)
+    if cap is None or not cap.isOpened():
+        raise("No camera")
+    webCam = True
+except:
+    print("Using default image.")
+    img = cv2.imread("pose.jpeg")   
 
 interpreter = Interpreter("lite-model_movenet_singlepose_lightning_tflite_int8_4.tflite")
-
-print("Model Loaded Successfully.")
-
 interpreter.allocate_tensors()
 _, height, width, _ = interpreter.get_input_details()[0]['shape']
 print("Image Shape (", width, ",", height, ")")
@@ -136,5 +146,25 @@ classification_time = np.round(time2-time1, 3)
 print("Classificaiton Time =", classification_time, "seconds.")
 
 
-# Return the classification label of the image.
+while(True):
+    if webCam:
+        ret, img = cap.read()
+    
+    print(img)
+    break
+
+    if webCam:
+        if sys.argv[-1] == "noWindow":
+           print("Finished a frame")
+           cv2.imwrite('detected_out.jpg',img)
+           continue
+        cv2.imshow('detected (press q to quit)',img)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            cap.release()
+            break
+    else:
+        break
+
+cv2.imwrite('detected_out.jpg',img)
+cv2.destroyAllWindows()
 
