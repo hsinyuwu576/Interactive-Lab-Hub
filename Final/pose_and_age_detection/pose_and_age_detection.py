@@ -133,7 +133,7 @@ def inference_model(interpreter, image):
   output = interpreter.get_tensor(output_details['index'])
   return output
 
-def _is_dance(keypoint_locs):
+def is_dance_helper(keypoint_locs):
   left_wrist = KEYPOINT_DICT['left_wrist']
   left_elbow = KEYPOINT_DICT['left_elbow']
   left_shoulder = KEYPOINT_DICT['left_shoulder']
@@ -152,51 +152,72 @@ def _is_dance(keypoint_locs):
       return True
   return False
 
-MAX_LENGTH = 5
-THRESHOLD = 4
+MAX_LENGTH = 3
+THRESHOLD = 2
 is_dance_ls = []
-def is_dance(keypoint_locs):
-  is_dance_ls.append(_is_dance(keypoint_locs))
+def is_dance(img, output_img):
+  output = inference_model(interpreter_pose, cv2.resize(img, (input_width, input_height)))
+  (keypoint_locs, keypoint_edges, edge_colors) = keypoints_and_edges_for_display(output, img.shape[0], img.shape[1])
+
+  # Draw the result on the frame
+  for edge, color in zip(keypoint_edges, edge_colors):
+    output_img = cv2.line(output_img, tuple(edge[0]), tuple(edge[1]), COLOR_DICT[color], thickness=3)
+  for idx, loc in keypoint_locs.items():
+    output_img = cv2.circle(output_img, tuple(loc), radius=3, color=(0, 0, 0), thickness=-1)
+
+  # Determine if a person is dacing
+  is_dance_ls.append(is_dance_helper(keypoint_locs))
   if len(is_dance_ls) > MAX_LENGTH:
     is_dance_ls.pop(0)
   cnt = 0
-
   for val in is_dance_ls:
     if val:
       cnt += 1
-  return True if cnt >= THRESHOLD else False
+  if cnt >= THRESHOLD:
+    output_img = cv2.putText(output_img, 'detect dance', org=(500,30), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+                             fontScale=1, color=(0,0,0), thickness=2)
 
 
 # Age Detection
-def age_detection(frame):
+has_child_ls = []
+string_pred_age = ['04 - 06', '07 - 08','09 - 11','12 - 19','20 - 27','28 - 35','36 - 45','46 - 60','61 - 75']
+def has_child(frame, output_image):
     font = cv2.FONT_HERSHEY_PLAIN
 
     gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray_frame, scaleFactor = 1.2, minNeighbors=5)
+    tmp = False
     for x,y,w,h in faces:
         saved_image = frame
         input_im = saved_image[y:y+h, x:x+w]
 
         if input_im is None:
-            print("Falied to dection the face")
+            print("Falied to detect the face")
         else:
             input_im = cv2.resize(input_im, (224,224))
             input_im = input_im.astype('float')
-            input_im = input_im / 255
-            input_im = img_to_array(input_im)
-            input_im = np.expand_dims(input_im, axis = 0)
+            input_im = input_im / 255.0
 
-            # Predict
-            input_data = np.array(input_im, dtype=np.float32)
-            interpreter_age.set_tensor(input_details_age[0]['index'], input_data)
-            interpreter_age.invoke()
-
-            output_data_age = interpreter_age.get_tensor(output_details_age[0]['index'])
+            output_data_age = inference_model(interpreter_age, input_im)
             index_pred_age = int(np.argmax(output_data_age))
+            if index_pred_age == 0 or index_pred_age == 1:
+                tmp = True
             prezic_age = string_pred_age[index_pred_age]
 
-            cv2.putText(frame, prezic_age + ', ' + prezic_gender, (x,y), font, 1, (255,255,255), 1, cv2.LINE_AA)
-            cv2.rectangle(frame, (x,y), (x+w,y+h), (255,255,255), 1)
+            output_image = cv2.putText(output_image, prezic_age, (x,y), font, 1, (255,255,255), 1, cv2.LINE_AA)
+            output_image = cv2.rectangle(output_image, (x,y), (x+w,y+h), (255,255,255), 1)
+
+    # Determine if there is child
+    has_child_ls.append(tmp)
+    if len(has_child_ls) > MAX_LENGTH:
+        has_child_ls.pop(0)
+    cnt = 0
+    for val in has_child_ls:
+        if val:
+            cnt += 1
+    if cnt >= THRESHOLD:
+        output_image = cv2.putText(output_image, 'detect child', org=(500,60), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+                             fontScale=1, color=(0,0,0), thickness=2)
 
 
 # Open webcam
@@ -204,29 +225,19 @@ cap = cv2.VideoCapture(0)
 while(True):
     time_start = time()
 
-    # Inference the model by input frame
     ret, img = cap.read()
-    output = inference_model(interpreter_pose, cv2.resize(img, (input_width, input_height)))
-    (keypoint_locs, keypoint_edges, edge_colors) = keypoints_and_edges_for_display(output, img.shape[0], img.shape[1])
-    age_detection(img)
+    output_img = img.copy()
+    is_dance(img, output_img)
+    has_child(img, output_img)
 
-    # Draw the result on the frame
-    for edge, color in zip(keypoint_edges, edge_colors):
-      img = cv2.line(img, tuple(edge[0]), tuple(edge[1]), COLOR_DICT[color], thickness=3)
-    for idx, loc in keypoint_locs.items():
-      img = cv2.circle(img, tuple(loc), radius=3, color=(0, 0, 0), thickness=-1)
-    if is_dance(keypoint_locs):
-      img = cv2.putText(img, 'dance!', org=(30,30), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
-                   fontScale=1, color=(0,0,0), thickness=2)
-    cv2.imshow('detected (press q to quit)',img)
+    fps = "FPS: " + str(round(1.0 / (time() - time_start), 2))
+    cv2.putText(output_img, fps, (20,20), cv2.FONT_HERSHEY_PLAIN, 1, (250,250,250), 1, cv2.LINE_AA)
+    cv2.imshow('detected (press q to quit)',output_img)
 
     # Press 'q' to leave
     if cv2.waitKey(1) & 0xFF == ord('q'):
         cap.release()
         break
-
-    fps = "FPS: " + str(round(1.0 / (time() - time_start), 2))
-    cv2.putText(frame, fps, (20,20), font, 1, (250,250,250), 1, cv2.LINE_AA)
 
 cv2.destroyAllWindows()
 
