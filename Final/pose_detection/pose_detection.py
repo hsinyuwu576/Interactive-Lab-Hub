@@ -1,6 +1,7 @@
 from tflite_runtime.interpreter import Interpreter
 import numpy as np
 import cv2
+from time import time
 
 # Dictionary that maps from joint names to keypoint indices.
 KEYPOINT_DICT = {
@@ -50,6 +51,20 @@ COLOR_DICT = {
     'g': (0, 255, 0),
     'b': (0, 0, 255)
 }
+
+# Load models
+
+# Face Detection
+face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+
+# Age Detection
+interpreter_age = Interpreter(model_path="AgeClass_best_06_02-16-02.tflite")
+interpreter_age.allocate_tensors()
+
+# Pose Detection
+interpreter_pose = Interpreter("lite-model_movenet_singlepose_lightning_tflite_int8_4.tflite")
+interpreter_pose.allocate_tensors()
+_, input_height, input_width, _ = interpreter_pose.get_input_details()[0]['shape']
 
 
 def keypoints_and_edges_for_display(keypoints_with_scores,
@@ -151,18 +166,49 @@ def is_dance(keypoint_locs):
       cnt += 1
   return True if cnt >= THRESHOLD else False
 
-# Load model
-interpreter = Interpreter("lite-model_movenet_singlepose_lightning_tflite_int8_4.tflite")
-interpreter.allocate_tensors()
-_, input_height, input_width, _ = interpreter.get_input_details()[0]['shape']
+
+# Age Detection
+def age_detection(frame):
+    font = cv2.FONT_HERSHEY_PLAIN
+
+    gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray_frame, scaleFactor = 1.2, minNeighbors=5)
+    for x,y,w,h in faces:
+        saved_image = frame
+        input_im = saved_image[y:y+h, x:x+w]
+
+        if input_im is None:
+            print("Falied to dection the face")
+        else:
+            input_im = cv2.resize(input_im, (224,224))
+            input_im = input_im.astype('float')
+            input_im = input_im / 255
+            input_im = img_to_array(input_im)
+            input_im = np.expand_dims(input_im, axis = 0)
+
+            # Predict
+            input_data = np.array(input_im, dtype=np.float32)
+            interpreter_age.set_tensor(input_details_age[0]['index'], input_data)
+            interpreter_age.invoke()
+
+            output_data_age = interpreter_age.get_tensor(output_details_age[0]['index'])
+            index_pred_age = int(np.argmax(output_data_age))
+            prezic_age = string_pred_age[index_pred_age]
+
+            cv2.putText(frame, prezic_age + ', ' + prezic_gender, (x,y), font, 1, (255,255,255), 1, cv2.LINE_AA)
+            cv2.rectangle(frame, (x,y), (x+w,y+h), (255,255,255), 1)
+
 
 # Open webcam
 cap = cv2.VideoCapture(0)
 while(True):
+    time_start = time()
+
     # Inference the model by input frame
     ret, img = cap.read()
-    output = inference_model(interpreter, cv2.resize(img, (input_width, input_height)))
+    output = inference_model(interpreter_pose, cv2.resize(img, (input_width, input_height)))
     (keypoint_locs, keypoint_edges, edge_colors) = keypoints_and_edges_for_display(output, img.shape[0], img.shape[1])
+    age_detection(img)
 
     # Draw the result on the frame
     for edge, color in zip(keypoint_edges, edge_colors):
@@ -178,6 +224,9 @@ while(True):
     if cv2.waitKey(1) & 0xFF == ord('q'):
         cap.release()
         break
+
+    fps = "FPS: " + str(round(1.0 / (time() - time_start), 2))
+    cv2.putText(frame, fps, (20,20), font, 1, (250,250,250), 1, cv2.LINE_AA)
 
 cv2.destroyAllWindows()
 
