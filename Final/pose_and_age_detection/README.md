@@ -1,11 +1,13 @@
-# Run Tensorflow Pose Estimation Model on Raspberry Pi
+# Pose and Age Detection on Raspberry Pi
 
 ## Demo:
 
-https://user-images.githubusercontent.com/112109383/203858970-0bbffeee-eee8-40c4-866f-57f57b9c0e9d.mp4
+![pose and age detection](https://user-images.githubusercontent.com/112109383/204146402-097c7dd6-1fd9-4f7e-b257-2df7fedc8114.png)
 
 ## Reference:
 
 * https://www.tensorflow.org/lite/examples/pose_estimation/overview
 
 * https://blog.paperspace.com/tensorflow-lite-raspberry-pi/
+
+* https://github.com/radualexandrub/Age-Gender-Classification-on-RaspberryPi4-with-TFLite-PyQt5
