@@ -2,6 +2,8 @@ from tflite_runtime.interpreter import Interpreter
 import numpy as np
 import cv2
 from time import time
+import paho.mqtt.client as mqtt
+import uuid
 
 # Dictionary that maps from joint names to keypoint indices.
 KEYPOINT_DICT = {
@@ -133,6 +135,8 @@ def inference_model(interpreter, image):
   output = interpreter.get_tensor(output_details['index'])
   return output
 
+
+### Dance detection
 def is_dance_helper(keypoint_locs):
   left_wrist = KEYPOINT_DICT['left_wrist']
   left_elbow = KEYPOINT_DICT['left_elbow']
@@ -151,6 +155,7 @@ def is_dance_helper(keypoint_locs):
     if right_elbow in keypoint_locs and keypoint_locs[right_elbow][1] < keypoint_locs[right_shoulder][1]:
       return True
   return False
+
 
 MAX_LENGTH = 3
 THRESHOLD = 2
@@ -176,9 +181,12 @@ def is_dance(img, output_img):
   if cnt >= THRESHOLD:
     output_img = cv2.putText(output_img, 'detect dance', org=(500,30), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                              fontScale=1, color=(0,0,0), thickness=2)
+    return True
+  else:
+    return False
 
 
-# Age Detection
+### Age Detection
 has_child_ls = []
 string_pred_age = ['04 - 06', '07 - 08','09 - 11','12 - 19','20 - 27','28 - 35','36 - 45','46 - 60','61 - 75']
 def has_child(frame, output_image):
@@ -218,7 +226,27 @@ def has_child(frame, output_image):
     if cnt >= THRESHOLD:
         output_image = cv2.putText(output_image, 'detect child', org=(500,60), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                              fontScale=1, color=(0,0,0), thickness=2)
+        return True
+    else:
+        return False
 
+
+### Set MQTT
+
+# Every client needs a random ID
+client = mqtt.Client(str(uuid.uuid1()))
+# configure network encryption etc
+client.tls_set()
+# this is the username and pw we have setup for the class
+client.username_pw_set('idd', 'device@theFarm')
+#connect to the broker
+client.connect(
+    'farlab.infosci.cornell.edu',
+    port=8883)
+
+
+
+### main
 
 # Open webcam
 cap = cv2.VideoCapture(0)
@@ -227,8 +255,10 @@ while(True):
 
     ret, img = cap.read()
     output_img = img.copy()
-    is_dance(img, output_img)
-    has_child(img, output_img)
+    if is_dance(img, output_img):
+        client.publish("IDD/", "dance")
+    if has_child(img, output_img):
+        client.publish("IDD/", "child")
 
     fps = "FPS: " + str(round(1.0 / (time() - time_start), 2))
     cv2.putText(output_img, fps, (20,20), cv2.FONT_HERSHEY_PLAIN, 1, (250,250,250), 1, cv2.LINE_AA)
