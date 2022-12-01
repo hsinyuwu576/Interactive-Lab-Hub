@@ -9,6 +9,10 @@ Henry Wu - hw574
 
 Tsung-Yin Hsieh - th542
 
+## Functional Check
+
+https://www.youtube.com/watch?v=vCQwhBj05Pg
+
 
 ## Project Plan
 
