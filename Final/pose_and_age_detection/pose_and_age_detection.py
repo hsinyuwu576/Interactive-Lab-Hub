@@ -257,14 +257,14 @@ while(True):
     ret, img = cap.read()
     output_img = img.copy()
     if is_dance(img, output_img):
-        client.publish("IDD/", "dance")
-        subprocess.run(['python', 'final_image1.py'])
+        client.publish("IDD/party/", "dance")
+        # subprocess.run(['python', 'final_image1.py'])
     elif has_child(img, output_img):
-        client.publish("IDD/", "child")
-        subprocess.run(['python', 'tired.py'])
+        client.publish("IDD/party/", "child")
+        # subprocess.run(['python', 'tired.py'])
     else:
-        client.publish("IDD/", "none")
-        subprocess.run(['python', 'eye-icon.py'])
+        client.publish("IDD/party/", "none")
+        # subprocess.run(['python', 'eye-icon.py'])
 
     fps = "FPS: " + str(round(1.0 / (time() - time_start), 2))
     cv2.putText(output_img, fps, (20,20), cv2.FONT_HERSHEY_PLAIN, 1, (250,250,250), 1, cv2.LINE_AA)

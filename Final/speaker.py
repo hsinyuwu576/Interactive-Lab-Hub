@@ -6,7 +6,7 @@ import sys
 import pygame
 
 # the # wildcard means we subscribe to all subtopics of IDD
-topic = 'IDD/#'
+topic = 'IDD/party/#'
 
 # some other examples
 # topic = 'IDD/a/fun/topic'
@@ -28,7 +28,7 @@ def on_message(cleint, userdata, msg):
             subprocess.run(['sh', './child.sh'])
 	if msg.payload.decode('UTF-8') == 'dance':
             pygame.mixer.init()
-            pygame.mixer.music.load("myFile.wav")
+            pygame.mixer.music.load("song.wav")
             pygame.mixer.music.play()
             while pygame.mixer.music.get_busy() == True:
                 continue
