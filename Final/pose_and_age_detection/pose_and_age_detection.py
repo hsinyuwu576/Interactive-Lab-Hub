@@ -4,6 +4,7 @@ import cv2
 from time import time
 import paho.mqtt.client as mqtt
 import uuid
+import subprocess
 
 # Dictionary that maps from joint names to keypoint indices.
 KEYPOINT_DICT = {
@@ -157,8 +158,8 @@ def is_dance_helper(keypoint_locs):
   return False
 
 
-MAX_LENGTH = 3
-THRESHOLD = 2
+MAX_LENGTH = 6
+THRESHOLD = 3
 is_dance_ls = []
 def is_dance(img, output_img):
   output = inference_model(interpreter_pose, cv2.resize(img, (input_width, input_height)))
@@ -257,8 +258,13 @@ while(True):
     output_img = img.copy()
     if is_dance(img, output_img):
         client.publish("IDD/", "dance")
-    if has_child(img, output_img):
+        subprocess.run(['python', 'final_image1.py'])
+    elif has_child(img, output_img):
         client.publish("IDD/", "child")
+        subprocess.run(['python', 'tired.py'])
+    else:
+        client.publish("IDD/", "none")
+        subprocess.run(['python', 'eye-icon.py'])
 
     fps = "FPS: " + str(round(1.0 / (time() - time_start), 2))
     cv2.putText(output_img, fps, (20,20), cv2.FONT_HERSHEY_PLAIN, 1, (250,250,250), 1, cv2.LINE_AA)

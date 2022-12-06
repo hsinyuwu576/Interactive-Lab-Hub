@@ -6,7 +6,6 @@
 # various animations on a strip of NeoPixels.
 
 import time
-import random
 from rpi_ws281x import *
 import argparse
 
@@ -29,11 +28,6 @@ def colorWipe(strip, color, wait_ms=200):
         strip.show()
         time.sleep(wait_ms / 1000.0)
 
-#def dance(strip, color, wait_ms=200):
-#    for i in range(10):
-#        strip.setPixelColor(i, Color(255, 0, 0)
-#        strip.show()
-#        time.sleep(wait_ms / 1000.0)
 
 def theaterChase(strip, color, wait_ms=50, iterations=10):
     """Movie theater light style chaser animation."""
@@ -88,14 +82,6 @@ def theaterChaseRainbow(strip, wait_ms=50):
             for i in range(0, strip.numPixels(), 3):
                 strip.setPixelColor(i + q, 0)
 
-def dancing(strip):
-    for i in range(100):
-        r = random.randint(0,255)
-        g = random.randint(0,255)
-        b = random.randint(0,255)
-        strip.setPixelColor(i,Color(r,g,b))
-        
-        strip.show()
 
 # Main program logic follows:
 if __name__ == "__main__":
@@ -122,25 +108,12 @@ if __name__ == "__main__":
     print("Press Ctrl-C to quit.")
     if not args.clear:
         print('Use "-c" argument to clear LEDs on exit')
+    # for i in range(150):
+    # strip.setPixelColor(0, Color(255,0,0))
+    # strip.show()
 
-    for i in range(0,10):
-        strip.setPixelColor(i, Color(255,0,0))
-        strip.show()
-    
-    #for i in range(10,20):
-    #    strip.setPixelColor(i, Color(0,255,0))
-    #    strip.show()
-    
-   # for i in range(20,30):
-    #    strip.setPixelColor(i, Color(0,0,255))
-    #    strip.show()
-
-   # for i in range(40,50):
-   #     strip.setPixelColor(i, Color(255,0,0))
-   #     strip.show()
-    #dancing(strip)   
     # while True:
-    # colorWipe(strip, Color(255, 0, 0))  # Red wipe
+      colorWipe(strip, Color(255, 0, 0))  # Red wipe
     # try:
 
         # while True:
